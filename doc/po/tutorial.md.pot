@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR The Rust Project Developers
+# This file is distributed under the same license as the Rust package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-08-10 19:03+0900\n"
+"Project-Id-Version: Rust Rust 0.8-pre\n"
+"POT-Creation-Date: 2013-08-10 21:43+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgid "# Introduction"
 msgstr ""
 
 #. type: Plain text
-#: doc/rust.md:1263 doc/tutorial.md:2176
+#: doc/rust.md:1277 doc/tutorial.md:2176
 msgid ""
 "In type-parameterized functions, methods of the supertrait may be called on "
 "values of subtrait-bound type parameters.  Refering to the previous example "
@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: doc/rust.md:1272 doc/tutorial.md:2185
+#: doc/rust.md:1286 doc/tutorial.md:2185
 #, no-wrap
 msgid ""
 "~~~\n"
@@ -46,7 +46,7 @@ msgid ""
 msgstr ""
 
 #. type: Plain text
-#: doc/rust.md:1274 doc/tutorial.md:2187
+#: doc/rust.md:1288 doc/tutorial.md:2187
 msgid "Likewise, supertrait methods may also be called on trait objects."
 msgstr ""
 
