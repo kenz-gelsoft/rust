@@ -1,13 +1,13 @@
-# Japanese translations for Rust Rust package
+# Japanese translations for Rust package
 # Copyright (C) 2013 The Rust Project Developers
 # This file is distributed under the same license as the Rust package.
 # Automatically generated, 2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Rust Rust 0.8-pre\n"
-"POT-Creation-Date: 2013-08-10 21:43+0900\n"
-"PO-Revision-Date: 2013-08-10 21:43+0900\n"
+"Project-Id-Version: Rust 0.8-pre\n"
+"POT-Creation-Date: 2013-08-11 17:13+0900\n"
+"PO-Revision-Date: 2013-08-11 17:13+0900\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: ja\n"
