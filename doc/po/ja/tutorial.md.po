@@ -80,6 +80,8 @@ msgid ""
 "functional and object-oriented styles. Some of its pleasant high-level "
 "features include:"
 msgstr ""
+"マルチパラダイム言語として、Rustは手続き型、関数型、そしてオブジェクト指向の"
+"スタイルをサポートします。これは以下の様な素晴らしい高レベルな機能を含みます:"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:30
@@ -87,6 +89,7 @@ msgid ""
 "**Type inference.** Type annotations on local variable declarations are "
 "optional."
 msgstr ""
+"**型推論** ローカル変数の宣言における型のアノテーションは任意に設定します"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:30
