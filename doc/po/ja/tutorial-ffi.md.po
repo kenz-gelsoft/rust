@@ -12,7 +12,7 @@ msgstr ""
 "Language-Team: none\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -21,7 +21,7 @@ msgstr ""
 #: doc/tutorial-borrowed-ptr.md:4 doc/tutorial-ffi.md:4
 #: doc/tutorial-macros.md:4 doc/tutorial-tasks.md:4
 msgid "# Introduction"
-msgstr ""
+msgstr "# はじめに"
 
 #. type: Plain text
 #: doc/tutorial.md:868 doc/tutorial-ffi.md:143

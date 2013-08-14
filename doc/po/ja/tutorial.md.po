@@ -12,7 +12,7 @@ msgstr ""
 "Language-Team: none\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -21,7 +21,7 @@ msgstr ""
 #: doc/tutorial-borrowed-ptr.md:4 doc/tutorial-ffi.md:4
 #: doc/tutorial-macros.md:4 doc/tutorial-tasks.md:4
 msgid "# Introduction"
-msgstr ""
+msgstr "# はじめに"
 
 #. type: Plain text
 #: doc/rust.md:1277 doc/tutorial.md:2176
@@ -66,6 +66,12 @@ msgid ""
 "that would otherwise cause segmentation faults. It is statically typed and "
 "compiled ahead of time."
 msgstr ""
+"Rust は型安全、メモリセーフ、並列処理、パフォーマンスにフォーカスしたプログラ"
+"ミング言語です。これは大規模でかつハイパフォーマンスなソフトウェアを記述する"
+"ことを目的とし、いくつかの共通問題から開放します。Rustは洗練されたメモリモデ"
+"ルを持ち、それにより効率的なデータ構造や安全な並列パターン、セグメントフロー"
+"を引き起こすような許されないメモリアクセスを禁止することを促します。これは静"
+"的な型付けされていて、事前にコンパイルされます。"
 
 #. type: Plain text
 #: doc/tutorial.md:17
