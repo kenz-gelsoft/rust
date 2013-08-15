@@ -1722,7 +1722,7 @@ msgstr ""
 #. type: Plain text
 #: doc/tutorial.md:927
 msgid "# Boxes"
-msgstr ""
+msgstr "# ボックス"
 
 #. type: Plain text
 #: doc/tutorial.md:934
@@ -1734,6 +1734,12 @@ msgid ""
 "struct on the stack. If you then copy it into a data structure, you copy the "
 "entire struct, not just a pointer."
 msgstr ""
+"多くの近代言語ではデフォルトで値をヒープメモリへのポインタとして表現します。対照的に"
+"Rust では C や C++ のようにそのような型を直接表現します。他の言い方をするならば、"
+"Rust の集約データは *アンボックスされている* ということです。すなわち"
+"`let x = Point { x: 1f, y: 1f };` とした場合、スタック上に構造体を作成することを"
+"意味します。この構造体をデータ構造にコピーする場合、ポインターのみならず、構造体全体を"
+"コピーすることになります。"
 
 #. type: Plain text
 #: doc/tutorial.md:939
@@ -1743,11 +1749,15 @@ msgid ""
 "mutable state, it can be useful to have a single copy on the stack or on the "
 "heap, and refer to that through a pointer."
 msgstr ""
+"`Point` のように小さい構造体では、この取り扱いは通常、メモリを確保しポインタを"
+"通じて間接化するよりも効率的になります。しかし大きな構造体の場合や、変更可能な状態"
+"の場合は、スタックまたはヒープ上にただ一つのコピーを持ち、それをポインタを通じて"
+"参照できると有用な場合もあるでしょう。"
 
 #. type: Plain text
 #: doc/tutorial.md:941
 msgid "## Owned boxes"
-msgstr ""
+msgstr "## 所有ボックス"
 
 #. type: Plain text
 #: doc/tutorial.md:944
@@ -1755,11 +1765,13 @@ msgid ""
 "An owned box (`~`) is a uniquely owned allocation on the heap. It inherits "
 "the mutability and lifetime of the owner as it would if there was no box:"
 msgstr ""
+"所有ボックス (`~`) は一カ所からのみ所有されるヒープ上のメモリ確保です。所有ボックスは"
+"所有者の変更可能性と生存期間を、まるでそこにボックスがないかのように引き継ぎます。"
 
 #. type: Plain text
 #: doc/tutorial.md:949
 msgid "~~~~ let x = 5; // immutable let mut y = 5; // mutable y += 2;"
-msgstr ""
+msgstr "~~~~ let x = 5; // 変更不能 let mut y = 5; // 変更可能 y += 2;"
 
 #. type: Plain text
 #: doc/tutorial.md:954
@@ -1767,6 +1779,8 @@ msgid ""
 "let x = ~5; // immutable let mut y = ~5; // mutable *y += 2; // the * "
 "operator is needed to access the contained value ~~~~"
 msgstr ""
+"let x = ~5; // 変更不能 let mut y = ~5; // 変更可能 *y += 2; // 中身の値に"
+"アクセスするには * 演算子が必要となります"
 
 #. type: Plain text
 #: doc/tutorial.md:959
@@ -1776,6 +1790,9 @@ msgid ""
 "than a pointer. Since an owned box has a unique owner, it can only be used "
 "to represent a tree data structure."
 msgstr ""
+"所有ボックスの目的は再帰的なデータ構造を作ることや、ポインタよりも大きなオブジェクトを"
+"安価に引き渡すための間接化レイヤーを追加することです。所有ボックスは単一の所有者を"
+"持つので、ツリー構造を表現するためにしか使うことが出来ません。"
 
 #. type: Plain text
 #: doc/tutorial.md:962
@@ -1783,6 +1800,8 @@ msgid ""
 "The following struct won't compile, because the lack of indirection would "
 "mean it has an infinite size:"
 msgstr ""
+"以下の構造体はコンパイルできません。なぜなら間接化されていないため無限のサイズを持つ"
+"ことになるからです:"
 
 #. type: Plain text
 #: doc/tutorial.md:968
@@ -1794,6 +1813,11 @@ msgid ""
 "}\n"
 "~~~~\n"
 msgstr ""
+"~~~~ {.xfail-test}\n"
+"struct Foo {\n"
+"    child: Option<Foo>\n"
+"}\n"
+"~~~~\n"
 
 #. type: Plain text
 #: doc/tutorial.md:972
@@ -1802,6 +1826,9 @@ msgid ""
 "value.  > It's comparable to a nullable pointer in many other languages, but "
 "stores the > contained value unboxed."
 msgstr ""
+"> ***注意:*** `Option` 型は *オプションである* 値を表現する列挙型です。"
+"> 他の多くの言語における null が代入できるポインタに相当するものですが、"
+"> 中身の値をアンボックスして格納します。"
 
 #. type: Plain text
 #: doc/tutorial.md:976
@@ -1810,6 +1837,8 @@ msgid ""
 "struct on the heap, which makes it a finite size and won't result in a "
 "compile-time error:"
 msgstr ""
+"所有ポインタによって間接化を追加すると、ヒープ上の構造体の外部に子供のメモリを確保する"
+"ため、構造体が有限のサイズになり、コンパイル時エラーにはなりません:"
 
 #. type: Plain text
 #: doc/tutorial.md:982
@@ -1821,6 +1850,11 @@ msgid ""
 "}\n"
 "~~~~\n"
 msgstr ""
+"~~~~\n"
+"struct Foo {\n"
+"    child: Option<~Foo>\n"
+"}\n"
+"~~~~\n"
 
 #. type: Plain text
 #: doc/tutorial.md:984
