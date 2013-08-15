@@ -2524,6 +2524,14 @@ msgid ""
 "}\n"
 "~~~\n"
 msgstr ""
+"~~~\n"
+"# trait Shape { fn area(&self) -> float; }\n"
+"# trait Circle : Shape { fn radius(&self) -> float; }\n"
+"fn radius_times_area<T: Circle>(c: T) -> float {\n"
+"    // `c` is both a Circle and a Shape\n"
+"    c.radius() * c.area()\n"
+"}\n"
+"~~~\n"
 
 #. type: Plain text
 #: doc/rust.md:1288 doc/tutorial.md:2187
