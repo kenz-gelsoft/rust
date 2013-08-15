@@ -44,6 +44,14 @@ msgid ""
 "}\n"
 "~~~\n"
 msgstr ""
+"~~~\n"
+"# trait Shape { fn area(&self) -> float; }\n"
+"# trait Circle : Shape { fn radius(&self) -> float; }\n"
+"fn radius_times_area<T: Circle>(c: T) -> float {\n"
+"    // `c` is both a Circle and a Shape\n"
+"    c.radius() * c.area()\n"
+"}\n"
+"~~~\n"
 
 #. type: Plain text
 #: doc/rust.md:1288 doc/tutorial.md:2187
@@ -53,7 +61,7 @@ msgstr ""
 #. type: Plain text
 #: doc/tutorial.md:2
 msgid "% The Rust Language Tutorial"
-msgstr ""
+msgstr "% Rust言語チュートリアル"
 
 #. type: Plain text
 #: doc/tutorial.md:13
@@ -66,7 +74,7 @@ msgid ""
 "that would otherwise cause segmentation faults. It is statically typed and "
 "compiled ahead of time."
 msgstr ""
-"Rust は型安全、メモリセーフ、並列処理、パフォーマンスにフォーカスしたプログラ"
+"Rustは型安全、メモリセーフ、並列処理、パフォーマンスにフォーカスしたプログラ"
 "ミング言語です。これは大規模でかつハイパフォーマンスなソフトウェアを記述する"
 "ことを目的とし、いくつかの共通問題から開放します。Rustは洗練されたメモリモデ"
 "ルを持ち、それにより効率的なデータ構造や安全な並列パターン、セグメントフロー"
@@ -1755,10 +1763,11 @@ msgid ""
 "calling the destructor, and the owner determines whether the object is "
 "mutable."
 msgstr ""
-"Rust はオブジェクトの所有権という概念を、オブジェクトの生存期間管理を変数または"
-"タスクローカルのガベージコレクタに委譲するという形で定式化しています。オブジェクトの"
-"所有者はデストラクタを呼び出すことにより、オブジェクトの生存期間を管理する責任を"
-"持ちます、また所有者はオブジェクトが変更可能であるかどうかを決定します。"
+"Rust はオブジェクトの所有権という概念を、オブジェクトの生存期間管理を変数また"
+"はタスクローカルのガベージコレクタに委譲するという形で定式化しています。オブ"
+"ジェクトの所有者はデストラクタを呼び出すことにより、オブジェクトの生存期間を"
+"管理する責任を持ちます、また所有者はオブジェクトが変更可能であるかどうかを決"
+"定します。"
 
 #. type: Plain text
 #: doc/tutorial.md:903
@@ -1769,11 +1778,11 @@ msgid ""
 "box managed by the garbage collector starts a new ownership tree, and the "
 "destructor is called when it is collected."
 msgstr ""
-"所有権は再帰的であり、故に変更可能性もまた再帰的に継承されます、そして"
-"デストラクタは所有しているオブジェクトの中にあるツリーを破棄します。変数は"
-"トップレベルの所有者であり、変数がスコープ外に出ると内部のオブジェクトを
-"破棄します。ガベージコレクタに管理されているボックスは新たな所有ツリーを開始し、"
-"そのデストラクタは収集されるときに呼び出しされます。"
+"所有権は再帰的であり、故に変更可能性もまた再帰的に継承されます、そしてデスト"
+"ラクタは所有しているオブジェクトの中にあるツリーを破棄します。変数はトップレ"
+"ベルの所有者であり、変数がスコープ外に出ると内部のオブジェクトを破棄します。"
+"ガベージコレクタに管理されているボックスは新たな所有ツリーを開始し、そのデス"
+"トラクタは収集されるときに呼び出しされます。"
 
 #. type: Plain text
 #: doc/tutorial.md:907
@@ -1781,8 +1790,8 @@ msgid ""
 "~~~~ // the struct owns the objects contained in the `x` and `y` fields "
 "struct Foo { x: int, y: ~int }"
 msgstr ""
-"~~~~ // 構造体が `x` および `y` フィールドに含まれるオブジェクトを所有しています。"
-"struct Foo { x: int, y: ~int }"
+"~~~~ // 構造体が `x` および `y` フィールドに含まれるオブジェクトを所有してい"
+"ます。struct Foo { x: int, y: ~int }"
 
 #. type: Plain text
 #: doc/tutorial.md:914
@@ -1821,10 +1830,10 @@ msgid ""
 "types with custom destructors."
 msgstr ""
 "オブジェクトがガベージコレクションされるボックスを含まない場合、それは単一の"
-"所有ツリーからなり、タスク間で受け渡しすることができる `Owned` 制約を満たします。"
-"カスタムのデストラクタは `Owned` である型においてのみ直接実装することができますが、"
-"ガベージコレクションされるボックスにカスタムのデストラクタを持つ型を *含む* ことは"
-"依然として許されます。"
+"所有ツリーからなり、タスク間で受け渡しすることができる `Owned` 制約を満たしま"
+"す。カスタムのデストラクタは `Owned` である型においてのみ直接実装することがで"
+"きますが、ガベージコレクションされるボックスにカスタムのデストラクタを持つ型"
+"を *含む* ことは依然として許されます。"
 
 #. type: Plain text
 #: doc/tutorial.md:927
@@ -1841,12 +1850,12 @@ msgid ""
 "struct on the stack. If you then copy it into a data structure, you copy the "
 "entire struct, not just a pointer."
 msgstr ""
-"多くの近代言語ではデフォルトで値をヒープメモリへのポインタとして表現します。対照的に"
-"Rust では C や C++ のようにそのような型を直接表現します。他の言い方をするならば、"
-"Rust の集約データは *アンボックスされている* ということです。すなわち"
-"`let x = Point { x: 1f, y: 1f };` とした場合、スタック上に構造体を作成することを"
-"意味します。この構造体をデータ構造にコピーする場合、ポインターのみならず、構造体全体を"
-"コピーすることになります。"
+"多くの近代言語ではデフォルトで値をヒープメモリへのポインタとして表現します。"
+"対照的にRust では C や C++ のようにそのような型を直接表現します。他の言い方を"
+"するならば、Rust の集約データは *アンボックスされている* ということです。すな"
+"わち`let x = Point { x: 1f, y: 1f };` とした場合、スタック上に構造体を作成す"
+"ることを意味します。この構造体をデータ構造にコピーする場合、ポインターのみな"
+"らず、構造体全体をコピーすることになります。"
 
 #. type: Plain text
 #: doc/tutorial.md:939
@@ -1856,10 +1865,10 @@ msgid ""
 "mutable state, it can be useful to have a single copy on the stack or on the "
 "heap, and refer to that through a pointer."
 msgstr ""
-"`Point` のように小さい構造体では、この取り扱いは通常、メモリを確保しポインタを"
-"通じて間接化するよりも効率的になります。しかし大きな構造体の場合や、変更可能な状態"
-"の場合は、スタックまたはヒープ上にただ一つのコピーを持ち、それをポインタを通じて"
-"参照できると有用な場合もあるでしょう。"
+"`Point` のように小さい構造体では、この取り扱いは通常、メモリを確保しポインタ"
+"を通じて間接化するよりも効率的になります。しかし大きな構造体の場合や、変更可"
+"能な状態の場合は、スタックまたはヒープ上にただ一つのコピーを持ち、それをポイ"
+"ンタを通じて参照できると有用な場合もあるでしょう。"
 
 #. type: Plain text
 #: doc/tutorial.md:941
@@ -1872,8 +1881,9 @@ msgid ""
 "An owned box (`~`) is a uniquely owned allocation on the heap. It inherits "
 "the mutability and lifetime of the owner as it would if there was no box:"
 msgstr ""
-"所有ボックス (`~`) は一カ所からのみ所有されるヒープ上のメモリ確保です。所有ボックスは"
-"所有者の変更可能性と生存期間を、まるでそこにボックスがないかのように引き継ぎます。"
+"所有ボックス (`~`) は一カ所からのみ所有されるヒープ上のメモリ確保です。所有"
+"ボックスは所有者の変更可能性と生存期間を、まるでそこにボックスがないかのよう"
+"に引き継ぎます。"
 
 #. type: Plain text
 #: doc/tutorial.md:949
@@ -1886,8 +1896,8 @@ msgid ""
 "let x = ~5; // immutable let mut y = ~5; // mutable *y += 2; // the * "
 "operator is needed to access the contained value ~~~~"
 msgstr ""
-"let x = ~5; // 変更不能 let mut y = ~5; // 変更可能 *y += 2; // 中身の値に"
-"アクセスするには * 演算子が必要となります"
+"let x = ~5; // 変更不能 let mut y = ~5; // 変更可能 *y += 2; // 中身の値にア"
+"クセスするには * 演算子が必要となります"
 
 #. type: Plain text
 #: doc/tutorial.md:959
@@ -1897,9 +1907,10 @@ msgid ""
 "than a pointer. Since an owned box has a unique owner, it can only be used "
 "to represent a tree data structure."
 msgstr ""
-"所有ボックスの目的は再帰的なデータ構造を作ることや、ポインタよりも大きなオブジェクトを"
-"安価に引き渡すための間接化レイヤーを追加することです。所有ボックスは単一の所有者を"
-"持つので、ツリー構造を表現するためにしか使うことが出来ません。"
+"所有ボックスの目的は再帰的なデータ構造を作ることや、ポインタよりも大きなオブ"
+"ジェクトを安価に引き渡すための間接化レイヤーを追加することです。所有ボックス"
+"は単一の所有者を持つので、ツリー構造を表現するためにしか使うことが出来ませ"
+"ん。"
 
 #. type: Plain text
 #: doc/tutorial.md:962
@@ -1907,8 +1918,8 @@ msgid ""
 "The following struct won't compile, because the lack of indirection would "
 "mean it has an infinite size:"
 msgstr ""
-"以下の構造体はコンパイルできません。なぜなら間接化されていないため無限のサイズを持つ"
-"ことになるからです:"
+"以下の構造体はコンパイルできません。なぜなら間接化されていないため無限のサイ"
+"ズを持つことになるからです:"
 
 #. type: Plain text
 #: doc/tutorial.md:968
@@ -1933,9 +1944,9 @@ msgid ""
 "value.  > It's comparable to a nullable pointer in many other languages, but "
 "stores the > contained value unboxed."
 msgstr ""
-"> ***注意:*** `Option` 型は *オプションである* 値を表現する列挙型です。"
-"> 他の多くの言語における null が代入できるポインタに相当するものですが、"
-"> 中身の値をアンボックスして格納します。"
+"> ***注意:*** `Option` 型は *オプションである* 値を表現する列挙型です。> 他の"
+"多くの言語における null が代入できるポインタに相当するものですが、> 中身の値"
+"をアンボックスして格納します。"
 
 #. type: Plain text
 #: doc/tutorial.md:976
@@ -1944,8 +1955,8 @@ msgid ""
 "struct on the heap, which makes it a finite size and won't result in a "
 "compile-time error:"
 msgstr ""
-"所有ポインタによって間接化を追加すると、ヒープ上の構造体の外部に子供のメモリを確保する"
-"ため、構造体が有限のサイズになり、コンパイル時エラーにはなりません:"
+"所有ポインタによって間接化を追加すると、ヒープ上の構造体の外部に子供のメモリ"
+"を確保するため、構造体が有限のサイズになり、コンパイル時エラーにはなりません:"
 
 #. type: Plain text
 #: doc/tutorial.md:982
