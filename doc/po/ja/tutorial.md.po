@@ -88,8 +88,7 @@ msgstr ""
 msgid ""
 "**Type inference.** Type annotations on local variable declarations are "
 "optional."
-msgstr ""
-"**型推論** ローカル変数の宣言における型のアノテーションは任意に設定します"
+msgstr "**型推論** ローカル変数の宣言における型アノテーションは省略可能です"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:30
@@ -97,6 +96,8 @@ msgid ""
 "**Safe task-based concurrency.** Rust's lightweight tasks do not share "
 "memory, instead communicating through messages."
 msgstr ""
+"**安全なタスクベースな並列性** Rustの軽量なタスクはメモリを共有せず、代わりに"
+"メッセージを通して通信をします"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:30
@@ -104,6 +105,8 @@ msgid ""
 "**Higher-order functions.** Efficient and flexible closures provide "
 "iteration and other control structures"
 msgstr ""
+"**高階関数** 効率的でかつ柔軟なクロージャーはイテレーションやその他の制御構造"
+"を提供します"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:30
@@ -113,6 +116,9 @@ msgid ""
 "algebraic data types in functional languages) is a compact and expressive "
 "way to encode program logic."
 msgstr ""
+"**パターンマッチングと代数的データ型** Rustの列挙型(C言語のenumよりももっと強"
+"力で、関数型言語の代数的データ型によく似ています)のパターンマッチングは、プロ"
+"グラムのロジックを記述するのに簡潔で表現しやすい方法を提供します"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:30
@@ -120,11 +126,13 @@ msgid ""
 "**Polymorphism.** Rust has type-parametric functions and types, type classes "
 "and OO-style interfaces."
 msgstr ""
+"**多様性** Rustは型付けされたパラメータを持つ関数と型、型クラスとオブジェクト"
+"指向風のインターフェイスを持っています"
 
 #. type: Plain text
 #: doc/tutorial.md:32
 msgid "## Scope"
-msgstr ""
+msgstr "## 想定範囲"
 
 #. type: Plain text
 #: doc/tutorial.md:38
@@ -134,6 +142,10 @@ msgid ""
 "system and memory model, generics, and modules. [Additional tutorials](#what-"
 "next) cover specific language features in greater depth."
 msgstr ""
+"この文章はプログラミング言語 Rust の入門的なチュートリアルです。この文章では"
+"文法、型の仕組みやメモリモデル、ジェネリクス、moduleを含む言語の基本について"
+"カバーしています。[その他のチュートリアル](#what-next) ではもっと深いところの"
+"言語の仕様についてカバーしています。"
 
 #. type: Plain text
 #: doc/tutorial.md:42
@@ -142,11 +154,14 @@ msgid ""
 "languages in the C family. Understanding of pointers and general memory "
 "management techniques will help."
 msgstr ""
+"このチュートリアルはC言語風の言語を一つかそれ以上に慣れている人を想定としてい"
+"ます。ポインタや一般的なメモリマネージメントの技術を理解していれば尚更良いで"
+"しょう"
 
 #. type: Plain text
 #: doc/tutorial.md:44
 msgid "## Conventions"
-msgstr ""
+msgstr "## 表記について"
 
 #. type: Plain text
 #: doc/tutorial.md:47
@@ -154,6 +169,8 @@ msgid ""
 "Throughout the tutorial, language keywords and identifiers defined in "
 "example code are displayed in `code font`."
 msgstr ""
+"このチュートリアルでは、サンプルコードの中の言語のキーワードと識別子の定義は`"
+"コードフォント`を使って表示をします。"
 
 #. type: Plain text
 #: doc/tutorial.md:53
@@ -164,6 +181,11 @@ msgid ""
 "to wrap them in `fn main() { ... }`, and make sure they don't contain "
 "references to names that aren't actually defined."
 msgstr ""
+"コードのスニペットはインデントをしていて、さらに等幅フォントで表示していま"
+"す。全てのスニペットがプログラムを構成しているわけではありません。簡潔にする"
+"ために、時々それ自体ではコンパイルできないプログラムの断片を見せます。もしそ"
+"れらを実行するのであれば、たぶん `fn main() { ... }` で囲んで、さらに実際には"
+"まだ定義をされていない名前を含んでいないか確認してください。"
 
 #. type: Plain text
 #: doc/tutorial.md:57
@@ -172,11 +194,14 @@ msgid ""
 "potential changes to the language, implementation > deficiencies, and other "
 "caveats appear offset in blockquotes."
 msgstr ""
+"> ***注意:*** Rust は現在進行形で開発している言語です。 > 言語の変更がある可"
+"能性や、実装の不備、そしてその他の四角い引用で補われて表示されている警告に注"
+"意してください。"
 
 #. type: Plain text
 #: doc/tutorial.md:59
 msgid "# Getting started"
-msgstr ""
+msgstr "# はじめよう"
 
 #. type: Plain text
 #: doc/tutorial.md:63
@@ -184,6 +209,9 @@ msgid ""
 "The Rust compiler currently must be built from a [tarball], unless you are "
 "on Windows, in which case using the [installer][win-exe] is recommended."
 msgstr ""
+"Rust コンパイラは現在のところ [tarball] からビルドする必要があります。もし、"
+"あなたがWindowsを使っているのであれば、[インストーラ][win-exe]を使うことを推"
+"奨します。"
 
 #. type: Plain text
 #: doc/tutorial.md:69
@@ -194,26 +222,33 @@ msgid ""
 "to fetch snapshots, and an OS that can execute the available snapshot "
 "binaries."
 msgstr ""
+"RustコンパイラはRustで書かれているので、Rustの事前にコンパイルされた \"スナッ"
+"プショット\" バージョン(開発の初期に作られたものです)によってビルドをしなくて"
+"はなりません。そのため、ソースのビルドにはインターネット接続が必須で、スナッ"
+"プショットを取得して、入手したスナップショットバイナリを実行できるOSが必要と"
+"なります。"
 
 #. type: Plain text
 #: doc/tutorial.md:71
 msgid "Snapshot binaries are currently built and tested on several platforms:"
 msgstr ""
+"スナップショットバイナリは現在いくつかのプラットフォームでビルドされ、テスト"
+"しています:"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:75
 msgid "Windows (7, Server 2008 R2), x86 only"
-msgstr ""
+msgstr "Windows (7, Server 2008 R2), x86 のみ"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:75
 msgid "Linux (various distributions), x86 and x86-64"
-msgstr ""
+msgstr "Linux (いくつかのディストリビューション), x86 と x86-64"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:75
 msgid "OSX 10.6 (\"Snow Leopard\") or greater, x86 and x86-64"
-msgstr ""
+msgstr "OSX 10.6 (\"Snow Leopard\") もしくはそれ以上, x86 と x86-64"
 
 #. type: Plain text
 #: doc/tutorial.md:78
@@ -221,6 +256,9 @@ msgid ""
 "You may find that other platforms work, but these are our \"tier 1\" "
 "supported build environments that are most likely to work."
 msgstr ""
+"あなたはもしかすると他のプラットフォームの動作環境を探しているかもしれません"
+"が、これらは私達の \"tier 1\"(訳注: 優先順位付け) としてサポートしているビル"
+"ド環境で、これらなら大抵動きます。"
 
 #. type: Plain text
 #: doc/tutorial.md:85
@@ -231,6 +269,11 @@ msgid ""
 "which are not discussed here. Finally, `rustc` may > need to be [referred to "
 "as `rustc.exe`][bug-3319]. It's a bummer, we > know."
 msgstr ""
+"> ***注意:*** Windowsユーザはwikiの \"[getting started][wiki-start]\" に詳細"
+"に書かれている注意を読みましょう。バイナリインストーラを使っている時でも、 "
+"Windows ビルドは MinGW のインストールが必要であり、正確な詳細はここでは特に扱"
+"いません。最後に、 `rustc` は[`rustc.exe`として扱う][bug-3319]必要があるで"
+"しょう。残念ですが。"
 
 #. type: Plain text
 #: doc/tutorial.md:88
@@ -243,32 +286,32 @@ msgstr ""
 #: doc/tutorial.md:91
 msgid ""
 "To build from source you will also need the following prerequisite packages:"
-msgstr ""
+msgstr "ソースからビルドするには次の必須パッケージが必要になります:"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:97
 msgid "g++ 4.4 or clang++ 3.x"
-msgstr ""
+msgstr "g++ 4.4 もしくは clang++ 3.x"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:97
 msgid "python 2.6 or later (but not 3.x)"
-msgstr ""
+msgstr "python 2.6 もしくはそれ以降 (ただし、3.xではない)"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:97
 msgid "perl 5.0 or later"
-msgstr ""
+msgstr "perl 5.0 もしくはそれ以降"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:97
 msgid "gnu make 3.81 or later"
-msgstr ""
+msgstr "gnu make 3.81 もしくはそれ以降"
 
 #. type: Bullet: '* '
 #: doc/tutorial.md:97
 msgid "curl"
-msgstr ""
+msgstr "curl"
 
 #. type: Plain text
 #: doc/tutorial.md:100
@@ -276,6 +319,8 @@ msgid ""
 "If you've fulfilled those prerequisites, something along these lines should "
 "work."
 msgstr ""
+"ちゃんとこれらの必須条件を満たしていれば、次の行に沿って実行すれば動作するで"
+"しょう。"
 
 #. type: Plain text
 #: doc/tutorial.md:108
@@ -293,6 +338,11 @@ msgid ""
 "adjusted by passing a `--prefix` argument to `configure`. Various other "
 "options are also supported: pass `--help` for more information on them."
 msgstr ""
+"もしあなたが普通にインストール先のディレクトリを変更する権限がなければ、(訳"
+"注: `make install`の代わりに) `sudo make install` を使う必要があるでしょう。"
+"インストール先は `configure`に `--prefix`引数をを渡すことで変更できます。他の"
+"オプションもサポートされています: もっと多くの情報を得るには `--help`を渡して"
+"下さい。"
 
 #. type: Plain text
 #: doc/tutorial.md:120
@@ -303,6 +353,11 @@ msgid ""
 "tool which acts both as a unified interface for them, and for a few common "
 "command line scenarios."
 msgstr ""
+"`make install`が終われば、`/usr/local/bin`にいくつかのプログラムが配置されま"
+"す: `rustc`, Rustコンパイラ; `rustdoc`, APIドキュメンテーションツール; "
+"`rustpkg`, Rustパッケージマネージャー; `rusti`, Rustの対話型インターフェイ"
+"ス; そして `rust`, これらのインターフェイスを統合したツールで、だいたいのコマ"
+"ンドライン作業に使えます。"
 
 #. type: Plain text
 #: doc/tutorial.md:123
@@ -314,7 +369,7 @@ msgstr ""
 #. type: Plain text
 #: doc/tutorial.md:125
 msgid "## Compiling your first program"
-msgstr ""
+msgstr "## 最初のプログラムをコンパイルする"
 
 #. type: Plain text
 #: doc/tutorial.md:128
@@ -322,6 +377,8 @@ msgid ""
 "Rust program files are, by convention, given the extension `.rs`. Say we "
 "have a file `hello.rs` containing this program:"
 msgstr ""
+"Rustのプログラムファイルは慣例により `.rs` 拡張子をつけます。 `hello.rs`とい"
+"う次のプログラムを含むファイルがあるとしましょう: "
 
 #. type: Plain text
 #: doc/tutorial.md:134
@@ -341,6 +398,9 @@ msgid ""
 "will produce an executable called `hello` (or `hello.exe` on Windows) which, "
 "upon running, will likely do exactly what you expect."
 msgstr ""
+"もしRustコンパイラがちゃんとインスールされているのであれば、 `rustc hello."
+"rs` を実行すれば `hello` という実行ファイル(Windowsであれば `hello.exe`となり"
+"ます)が生成され、実行すれば、予想通りの結果がちゃんと得られるでしょう。"
 
 #. type: Plain text
 #: doc/tutorial.md:143
@@ -350,6 +410,10 @@ msgid ""
 "`println` to some nonexistent function), and then compile it, you'll see an "
 "error message like this:"
 msgstr ""
+"Rustコンパイラはエラーに遭遇したときに使える情報を提供しようとします。もし、"
+"プログラムの中でエラー(例えば、`println`を存在しない関数に置き換えたり)を引き"
+"起こして、それをコンパイルすると、次のようなエラーメッセージを見ることになる"
+"でしょう:"
 
 #. type: Plain text
 #: doc/tutorial.md:149
@@ -372,11 +436,17 @@ msgid ""
 "Rust programs can also be compiled as libraries, and included in other "
 "programs."
 msgstr ""
+"もっともシンプルなRustのプログラムは`.rs`ファイルに同じ型と関数がその中に定義"
+"されています。もしそこに`main`関数があれば、それは実行形式としてコンパイルす"
+"ることができます。Rustはファイルのトップレベルに宣言がないようなコードは許可"
+"しません: すべての状態は関数の中に保持される必要があります。Rustプログラムは"
+"ライブラリとしてもコンパイルすることができ、他のプログラムに含むことができま"
+"す。"
 
 #. type: Plain text
 #: doc/tutorial.md:158
 msgid "## Using the rust tool"
-msgstr ""
+msgstr "## rustのツールを使う"
 
 #. type: Plain text
 #: doc/tutorial.md:163
@@ -386,6 +456,10 @@ msgid ""
 "projects, prototypes, or if you're a beginner, it might be more convenient "
 "to use the `rust` tool."
 msgstr ""
+"`rustc`を使うことで実行ファイルを直接生成することができ、コードをテストする完"
+"璧な正しい方法は手動でそれらを実行すればよいです。小さいプロジェクトやプロト"
+"タイプのため、またはあなたが初心者であれば、`rust`コマンドを使ったほうがより"
+"便利になるでしょう。"
 
 #. type: Plain text
 #: doc/tutorial.md:169
@@ -395,6 +469,11 @@ msgid ""
 "a file `foo.rs` in your current directory, `rust run foo.rs` would attempt "
 "to compile it and, if successful, directly run the resulting binary."
 msgstr ""
+"`rust`コマンドは他のrustツールにアクセスする統合的な役割を提供し、そのなかで"
+"もちろん、ソースファイルを直接実行する便利なショートカットもあります。例え"
+"ば、もし`foo.rs`というファイルがカレントディレクトリにあれば、`rust run foo."
+"rs`はそのファイルのコンパイルを試し、もし成功すれば、直接生成されたバイナリを"
+"実行します。"
 
 #. type: Plain text
 #: doc/tutorial.md:172
@@ -402,11 +481,13 @@ msgid ""
 "To get a list of all available commands, simply call `rust` without any "
 "argument."
 msgstr ""
+"存在するすべてのコマンドのリストを得たいのであれば、単純に引数なしで`rust`を"
+"実行します。"
 
 #. type: Plain text
 #: doc/tutorial.md:174
 msgid "## Editing Rust code"
-msgstr ""
+msgstr "## Rustのコードを編集する"
 
 #. type: Plain text
 #: doc/tutorial.md:184
@@ -420,6 +501,14 @@ msgid ""
 "[standalone][sublime] and through [Sublime Package Control][sublime-pkg], "
 "and support for Kate under `src/etc/kate`."
 msgstr ""
+"vim向けのハイライトやインデントをするスクリプトは配布されているRustのコード"
+"の `src/etc/vim/` 以下にあります。 `src/etc/emacs/`以下には `rust-mode`と呼ば"
+"れるemacsのモードがありますが、このディレクトリにある注意を読むようにしてくだ"
+"さい。特に、もしあなたが emacs 24を動かしているのであれば、 emacsのパッケージ"
+"マネージャを使って `rust-mode`をインストールすれば最も簡単に最新のものを使う"
+"ことができるでしょう。Sublime Text 2のパッケージもあり、 [スタンドアローンの"
+"もの][sublime] か、もしくは [Sublime Package Control][sublime-pkg] を通して提"
+"供されます。また、 Kate のサポートは `src/etc/kate` にあります。"
 
 #. type: Plain text
 #: doc/tutorial.md:188
@@ -428,6 +517,9 @@ msgid ""
 "editors are not yet supported. If you end up writing a Rust mode for your "
 "favorite editor, let us know so that we can link to it."
 msgstr ""
+"`src/etc/ctags.rust`を通してctagsもサポートしていますが、多くのツールやエディ"
+"タはサポートしていません。もし、あなたのお気に入りのエディタで Rust のモード"
+"を作ってくれたら、ぜひ教えていただければリンクします。"
 
 #. type: Plain text
 #: doc/tutorial.md:191
@@ -439,7 +531,7 @@ msgstr ""
 #. type: Plain text
 #: doc/tutorial.md:193
 msgid "# Syntax basics"
-msgstr ""
+msgstr "# 基本的な文法"
 
 #. type: Plain text
 #: doc/tutorial.md:201
@@ -452,6 +544,12 @@ msgid ""
 "as in C; comments are again like C; module names are separated with double-"
 "colon (`::`) as with C++."
 msgstr ""
+"あなたはなにかしらC言語っぽい言語(C++, Java, Javascript, C#, もしくはPHP)のプ"
+"ログラミング経験があると仮定すれば、Rustは親しみやすいと思います。コードは波"
+"括弧で囲んだブロックに記述します; これらは`if`や`while`のような分岐やループの"
+"構造を制御します; 関数呼び出しは `myfunc(arg1, arg2)` と書きます; 演算子はC言"
+"語と同様に書き、C言語とだいたい同じ優先順位を持ちます; コメントもやはりC言"
+"語っぽく書きます; moduleの名前はC++のようにダブルコロン(`::`)で分割します。"
 
 #. type: Plain text
 #: doc/tutorial.md:206
@@ -461,6 +559,10 @@ msgid ""
 "while their bodies *must* be wrapped in braces. Single-statement, unbraced "
 "bodies are not allowed."
 msgstr ""
+"外見上の主な違いで知っておく必要があるのは、`if`や`while`のような制御構文の頭"
+"の条件文は丸括弧が必要なく、それらの中身は中括弧で囲まれなければ*ならない*の"
+"です。Single-statement(訳注: C言語でif文の中身が一行の時に中括弧を省略する文"
+"法のこと)、中括弧を省略した記述は許可しません。"
 
 #. type: Plain text
 #: doc/tutorial.md:219
@@ -487,6 +589,8 @@ msgid ""
 "default. To introduce a local variable that you can re-assign later, use "
 "`let mut` instead."
 msgstr ""
+"`let`キーワードはローカル変数を定義します。変数は標準では変更不可です。あとで"
+"変更可能なローカル変数を定義するには、代わりに`let mut`を使います。"
 
 #. type: Plain text
 #: doc/tutorial.md:227
@@ -511,6 +615,9 @@ msgid ""
 "specify a variable's type by following it with a colon, then the type name. "
 "Static items, on the other hand, always require a type annotation."
 msgstr ""
+"Rustはほとんどの場合ローカル変数の型を推論するにも関わらず、コロンと続いて型"
+"の名前をつけることで変数の型を決定づけることができます。一方で、staticなアイ"
+"テムは常に型のアノテーションが必要となります。"
 
 #. type: Plain text
 #: doc/tutorial.md:243
