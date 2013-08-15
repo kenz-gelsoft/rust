@@ -1966,7 +1966,7 @@ msgstr ""
 #. type: Plain text
 #: doc/tutorial.md:984
 msgid "## Managed boxes"
-msgstr ""
+msgstr "## マネージドボックス"
 
 #. type: Plain text
 #: doc/tutorial.md:992
@@ -1979,21 +1979,28 @@ msgid ""
 "the type of the managed box (`@` or `@mut`). An object containing a managed "
 "box is not `Owned`, and can't be sent between tasks."
 msgstr ""
+"マネージドボックス (`@`) はタスクローカルのガベージコレクタにょって生存期間が管理される"
+"ヒープ上のメモリ確保です。マネージドボックスはそのボックスへの参照がなくなってからタスクが"
+"終了するまでのどこかの時点で破壊されます。マネージドボックスには所有者がないので、新しい"
+"所有ツリーを作り、変更可能性を継承しません。マネージドボックスは中身のオブジェクトを所有し、"
+"変更可能性はマネージドボックスの種類 (`@` であるか `@mut` であるか) によって決まります。"
+"マネージドボックスを持つオブジェクトは `Owned` ではなく、タスク間で受け渡すことは"
+"できません。"
 
 #. type: Plain text
 #: doc/tutorial.md:995
 msgid "~~~~ let a = @5; // immutable"
-msgstr ""
+msgstr "~~~~ let a = @5; // 変更不能"
 
 #. type: Plain text
 #: doc/tutorial.md:998
 msgid "let mut b = @5; // mutable variable, immutable box b = @10;"
-msgstr ""
+msgstr "let mut b = @5; // 変更可能な変数, 変更不能なボックス b = @10;"
 
 #. type: Plain text
 #: doc/tutorial.md:1001
 msgid "let c = @mut 5; // immutable variable, mutable box *c = 10;"
-msgstr ""
+msgstr "let c = @mut 5; // 変更不能な変数, 変更可能なボックス *c = 10;"
 
 #. type: Plain text
 #: doc/tutorial.md:1006
@@ -2001,6 +2008,8 @@ msgid ""
 "let mut d = @mut 5; // mutable variable, mutable box *d += 5; d = @mut 15; "
 "~~~~"
 msgstr ""
+"let mut d = @mut 5; // 変更可能な変数, 変更可能なボックス *d += 5; d = @mut 15; "
+"~~~~"
 
 #. type: Plain text
 #: doc/tutorial.md:1011
@@ -2010,6 +2019,9 @@ msgid ""
 "its type, however, so for example a mutable handle to an immutable box "
 "cannot be assigned a reference to a mutable box."
 msgstr ""
+"変更可能な変数と変更不能な変数は、型に互換性さえあれば、同じボックスを参照することが"
+"できます。ボックスの変更可能性はボックスの型の特性です、しかしながら、例えば変更不能な"
+"ボックスへの変更可能なハンドルには変更可能なボックスへの参照を代入することはできません。"
 
 #. type: Plain text
 #: doc/tutorial.md:1015
@@ -2019,6 +2031,9 @@ msgid ""
 "let a = @1;     // immutable box\n"
 "let b = @mut 2; // mutable box\n"
 msgstr ""
+"~~~~\n"
+"let a = @1;     // 変更不能なボックス\n"
+"let b = @mut 2; // 変更可能なボックス\n"
 
 #. type: Plain text
 #: doc/tutorial.md:1018
@@ -2027,6 +2042,8 @@ msgid ""
 "let mut c : @int;       // declare a variable with type managed immutable int\n"
 "let mut d : @mut int;   // and one of type managed mutable int\n"
 msgstr ""
+"let mut c : @int;       // マネージドな変更不能な int 型の変数と\n"
+"let mut d : @mut int;   // マネージドな変更可能な int 型の変数を宣言しています\n"
 
 #. type: Plain text
 #: doc/tutorial.md:1022
@@ -2036,6 +2053,9 @@ msgid ""
 "d = b;          // box type is the same, okay\n"
 "~~~~\n"
 msgstr ""
+"c = a;          // ボックスの型は同じ、問題なし\n"
+"d = b;          // ボックスの型は同じ、問題なし\n"
+"~~~~\n"
 
 #. type: Plain text
 #: doc/tutorial.md:1027
@@ -2046,6 +2066,10 @@ msgid ""
 "c = b;          // error\n"
 "~~~~\n"
 msgstr ""
+"~~~~ {.xfail-test}\n"
+"// しかし b を c に代入したり a を d に代入するのはアウト\n"
+"c = b;          // エラー\n"
+"~~~~\n"
 
 #. type: Plain text
 #: doc/tutorial.md:1029
