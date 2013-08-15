@@ -1637,7 +1637,7 @@ msgstr ""
 #. type: Plain text
 #: doc/tutorial.md:892
 msgid "# Ownership"
-msgstr ""
+msgstr "# 所有権"
 
 #. type: Plain text
 #: doc/tutorial.md:897
@@ -1648,6 +1648,10 @@ msgid ""
 "calling the destructor, and the owner determines whether the object is "
 "mutable."
 msgstr ""
+"Rust はオブジェクトの所有権という概念を、オブジェクトの生存期間管理を変数または"
+"タスクローカルのガベージコレクタに委譲するという形で定式化しています。オブジェクトの"
+"所有者はデストラクタを呼び出すことにより、オブジェクトの生存期間を管理する責任を"
+持ちます、また所有者はオブジェクトが変更可能であるかどうかを決定します。"
 
 #. type: Plain text
 #: doc/tutorial.md:903
@@ -1658,6 +1662,11 @@ msgid ""
 "box managed by the garbage collector starts a new ownership tree, and the "
 "destructor is called when it is collected."
 msgstr ""
+"所有権は再帰的であり、故に変更可能性もまた再帰的に継承されます、そして"
+"デストラクタは所有しているオブジェクトの中にあるツリーを破棄します。変数は"
+"トップレベルの所有者であり、変数がスコープ外に出ると内部のオブジェクトを
+"破棄します。ガベージコレクタに管理されているボックスは新たな所有ツリーを開始し、"
+"そのデストラクタは収集されるときに呼び出しされます。"
 
 #. type: Plain text
 #: doc/tutorial.md:907
@@ -1665,6 +1674,8 @@ msgid ""
 "~~~~ // the struct owns the objects contained in the `x` and `y` fields "
 "struct Foo { x: int, y: ~int }"
 msgstr ""
+"~~~~ // 構造体が `x` および `y` フィールドに含まれるオブジェクトを所有しています。"
+"struct Foo { x: int, y: ~int }"
 
 #. type: Plain text
 #: doc/tutorial.md:914
@@ -1677,6 +1688,12 @@ msgid ""
 "// when `a` goes out of scope, the destructor for the `~int` in the struct's\n"
 "// field is called\n"
 msgstr ""
+"{\n"
+"    // `a` は構造体の所有者で、すなわち構造体のフィールドの所有者になります。\n"
+"    let a = Foo { x: 5, y: ~10 };\n"
+"}\n"
+"// `a` がスコープ外に出ると、構造体フィールド内の `~int` のデストラクタが\n"
+"// 呼び出されます。\n"
 
 #. type: Plain text
 #: doc/tutorial.md:919
@@ -1684,6 +1701,8 @@ msgid ""
 "// `b` is mutable, and the mutability is inherited by the objects it owns "
 "let mut b = Foo { x: 5, y: ~10 }; b.x = 10; ~~~~"
 msgstr ""
+"// `b` は変更可能で、その変更可能性は所有するオブジェクトにも引き継がれます"
+"let mut b = Foo { x: 5, y: ~10 }; b.x = 10; ~~~~"
 
 #. type: Plain text
 #: doc/tutorial.md:925
@@ -1694,6 +1713,11 @@ msgid ""
 "types that are `Owned`, but garbage-collected boxes can still *contain* "
 "types with custom destructors."
 msgstr ""
+"オブジェクトがガベージコレクションされるボックスを含まない場合、それは単一の"
+"所有ツリーからなり、タスク間で受け渡しすることができる `Owned` 制約を満たします。"
+"カスタムのデストラクタは `Owned` である型においてのみ直接実装することができますが、"
+"ガベージコレクションされるボックスにカスタムのデストラクタを持つ型を *含む* ことは"
+"依然として許されます。"
 
 #. type: Plain text
 #: doc/tutorial.md:927
