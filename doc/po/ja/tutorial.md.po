@@ -2085,7 +2085,7 @@ msgstr ""
 #. type: Plain text
 #: doc/tutorial.md:1029
 msgid "# Move semantics"
-msgstr ""
+msgstr "# ムーブセマンティクス"
 
 #. type: Plain text
 #: doc/tutorial.md:1035
@@ -2096,6 +2096,10 @@ msgid ""
 "a custom destructor. After a value has been moved, it can no longer be used "
 "from the source location and will not be destroyed there."
 msgstr ""
+"Rust は引数を渡すとき、代入するとき、関数から値を返すときに浅いコピーを使います。"
+"浅いコピーはコピーされた値の所有ツリーが所有ボックスまたはカスタムのデストラクタを"
+"持つ型を含んでいる場合には、所有権の移動であると考えられています。値が移動された後では、"
+"元の場所にあった値はその場所から使うことができず、そこでは値の破棄も行われません。"
 
 #. type: Plain text
 #: doc/tutorial.md:1041
@@ -2103,6 +2107,8 @@ msgid ""
 "~~~~ let x = ~5; let y = x.clone(); // y is a newly allocated box let z = "
 "x; // no new memory allocated, x can no longer be used ~~~~"
 msgstr ""
+"~~~~ let x = ~5; let y = x.clone(); // y は新たに確保されたボックス let z = "
+"x; // 新たなメモリ確保は行われない, x は使用不能 ~~~~"
 
 #. type: Plain text
 #: doc/tutorial.md:1044
@@ -2110,6 +2116,8 @@ msgid ""
 "Since in owned boxes mutability is a property of the owner, not the box, "
 "mutable boxes may become immutable when they are moved, and vice-versa."
 msgstr ""
+"所有ボックス内では変更可能性はボックスではなく所有者の特性で、変更可能なボックスは"
+"移動によって変更不能になるかもしれませんし、逆もまた然りです。"
 
 #. type: Plain text
 #: doc/tutorial.md:1051
@@ -2117,6 +2125,8 @@ msgid ""
 "~~~~ let r = ~13; let mut s = r; // box becomes mutable *s += 1; let t = "
 "s; // box becomes immutable ~~~~"
 msgstr ""
+"~~~~ let r = ~13; let mut s = r; // ボックスは変更可能になった *s += 1; let t = "
+"s; // ボックスは変更不能になった ~~~~"
 
 #. type: Plain text
 #: doc/tutorial.md:1053
